@@ -1,0 +1,91 @@
+
+@import "tailwindcss";
+
+/* Dashboard css start */
+
+/* .dashboard {
+  font-family: sans-serif;
+  background: #f4f4f8;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #ccc;
+}
+
+.status-bar span {
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.status.online {
+  color: green;
+}
+
+.status.offline {
+  color: red;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px #aaa;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card.green { border-left: 5px solid green; }
+.card.blue { border-left: 5px solid blue; }
+.card.purple { border-left: 5px solid purple; }
+.card.orange { border-left: 5px solid orange; }
+
+.transactions, .actions {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px #aaa;
+}
+
+.transaction-item {
+  margin-bottom: 10px;
+}
+
+.actions button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #ddd;
+} */
+
+
+/* Dashboard css end */
