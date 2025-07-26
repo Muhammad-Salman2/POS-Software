@@ -1,31 +1,36 @@
-// import { BrowserRouter, createBrowserRouter, HashRouter, RouterProvider } from 'react-router-dom'
-import {HashRouter, Routes, Route } from 'react-router-dom';
+// File: src/App.jsx
+// import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from '../components/Slidebaar';
 
-import Slidebaar from '../components/Slidebaar.jsx';
-import Login from '../components/Login.jsx';
-import Home from '../components/Home.jsx';
-import Navbar from '../components/Navbar.jsx';
-
-
-
+import Invoice from '../pages/Invoice';
+import Inventory from '../pages/Inventory';
+import Product from '../pages/Product';
+import Analyst from '../pages/Analyst';
+import Dashboard from '../pages/dashboard';
+import Catogary from '../pages/Catogary';
+import RegisterUserForm from '../components/login_signup';
 
 function App() {
-
-
   return (
-    <>
-          <HashRouter>
-              <Navbar />
-              <Slidebaar />
-            <Routes>
-              <Route path='/home' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-              {/* <Route path='/slidebaar' element={<Slidebaar />} /> */}
-            </Routes >
-          </HashRouter>
+    <Router>
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <RegisterUserForm />
 
-    </>
+        <div className="flex-1 p-4 bg-gray-50 overflow-auto">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/analyst" element={<Analyst />} />
+            <Route path="/catogary" element={<Catogary />} />
+          </Routes>
 
+        </div>
+      </div>
+    </Router>
   );
 }
 
