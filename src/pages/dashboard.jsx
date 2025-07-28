@@ -26,7 +26,7 @@ export default function Dashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-xl shadow-lg transform transition hover:scale-105">
+        <div className="flex items-center space-x-4 p-6 bg-[#155dfc] text-white rounded-xl shadow-lg transform transition hover:scale-105">
           <CurrencyDollarIcon className="w-12 h-12" />
           <div>
             <p className="text-lg font-semibold">Total Sales</p>
@@ -34,7 +34,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl shadow-lg transform transition hover:scale-105">
+        <div className="flex items-center space-x-4 p-6 bg-[#155dfc] text-white rounded-xl shadow-lg transform transition hover:scale-105">
           <ShoppingCartIcon className="w-12 h-12" />
           <div>
             <p className="text-lg font-semibold">Products Sold</p>
@@ -42,7 +42,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4 p-6 bg-gradient-to-r from-yellow-400 to-red-500 text-white rounded-xl shadow-lg transform transition hover:scale-105">
+        <div className="flex items-center space-x-4 p-6 bg-[#155dfc] text-white rounded-xl shadow-lg transform transition hover:scale-105">
           <ClockIcon className="w-12 h-12" />
           <div>
             <p className="text-lg font-semibold">Recent Activity</p>

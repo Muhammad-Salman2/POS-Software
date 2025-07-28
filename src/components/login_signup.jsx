@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import BASE_URL from "../AdminRejisterApi";
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -22,19 +23,20 @@ const RegisterUserForm = () => {
     setMessage(null);
 
     try {
-      const res = await axios.post("http://192.168.3.236:5000/api/v1/user/register", formData);
+      const res = await axios.post(`${BASE_URL}user/register`, formData);
       setMessage({ type: "success", text: res.data.message });
       setFormData({ fullname: "", email: "", password: "" });
     } catch (error) {
-      const errMsg =
-        error.response?.data?.message || "Something went wrong!";
+      const errMsg = error.response?.data?.message || "Something went wrong!";
       setMessage({ type: "error", text: errMsg });
+      console.log("Error:", error);
     }
+
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-4">Create Admin</h2>
+    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow flex flex-col items-center justify-center !gap-1">
+      <h1 className="text-2xl font-bold mb-4 ">Admin Registration</h1>
       {message && (
         <p
           className={`mb-4 ${
@@ -45,7 +47,7 @@ const RegisterUserForm = () => {
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className=" ">
         <input
           type="text"
           name="fullname"
@@ -63,7 +65,7 @@ const RegisterUserForm = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded pt-1"
         />
 
         <input
@@ -73,14 +75,14 @@ const RegisterUserForm = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 border rounded"
+          className="w-full px-4 py-2 border rounded "
         />
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          className="w-full bg-[#155dfc] !text-white py-2 rounded hover:bg-blue-700"
         >
-          Create Admin
+          Register
         </button>
       </form>
     </div>
