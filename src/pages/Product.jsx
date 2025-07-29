@@ -27,7 +27,7 @@ import {
 import React, { useState, useEffect } from 'react';
 
 export default function Product() {
-  const categories = ['Electronics', 'Furniture', 'Accessories', 'Fashion', 'Home Decor', 'Pharma'];
+  const categories = ['Electronics', 'Furniture', 'Accessories', 'Fashion', 'Home Decor', 'Pharma', 'Health & Beauty', 'Sports', 'Toys', 'Books'];
   const [isOpen, setIsOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
@@ -132,27 +132,27 @@ export default function Product() {
 
 
 
-   {/* add product form code start */}
+      {/* add product form code start */}
 
-      
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="bg-[#155dfc] !text-white"  onClick={() => {
-              setIsOpen(true);
-              setEditIndex(null);
-              setFormData({
-                name: '',
-                price: '',
-                costPrice: '',
-                stockQuantity: '',
-                unit: '',
-                categoryIndex: '',
-                categoryName: '',
-              });
-            }}> Add New Product</Button>
-          </SheetTrigger>
 
-  {isOpen && (
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="bg-[#155dfc] !text-white" onClick={() => {
+            setIsOpen(true);
+            setEditIndex(null);
+            setFormData({
+              name: '',
+              price: '',
+              costPrice: '',
+              stockQuantity: '',
+              unit: '',
+              categoryIndex: '',
+              categoryName: '',
+            });
+          }}> Add New Product</Button>
+        </SheetTrigger>
+
+        {isOpen && (
           <SheetContent>
             <SheetHeader>
 
@@ -232,7 +232,7 @@ export default function Product() {
                     {categories.map((cat, index) => (
                       <SelectItem key={index} value={index.toString()}>
                         {cat}
-                        
+
                       </SelectItem>
                     ))}
                   </SelectGroup>
@@ -255,7 +255,7 @@ export default function Product() {
             </form>
           </SheetContent>
         )}
-        </Sheet>
+      </Sheet>
       {/* add product form code end */}
 
 
@@ -273,9 +273,9 @@ export default function Product() {
 
 
 
-      
 
-{/* 
+
+      {/* 
       add product form code start
 
       
@@ -313,9 +313,9 @@ export default function Product() {
                   onChange={handleChange}
                   className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required />
+                  
 
-
-                <Label htmlFor="sheet-demo-username">Price</Label>
+                  <Label htmlFor="sheet-demo-username">Price</Label>
                 <Input id="sheet-demo-username" placeholder="Enter price"
                   name="price"
                   value={formData.price}
@@ -324,7 +324,7 @@ export default function Product() {
                   type="number"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
-                />
+                  />
               </div>
              
               <div className="grid gap-3">
@@ -337,12 +337,12 @@ export default function Product() {
                   type="number"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
-                />
-              </div>
-              <div className="grid gap-3">
-
-                <Label htmlFor="sheet-demo-username">Stockquantity</Label>
-                <Input id="sheet-demo-username" placeholder="Stockquantity"
+                  />
+                  </div>
+                  <div className="grid gap-3">
+                  
+                  <Label htmlFor="sheet-demo-username">Stockquantity</Label>
+                  <Input id="sheet-demo-username" placeholder="Stockquantity"
                   name="stockQuantity"
                   value={formData.stockQuantity}
                   onChange={handleChange}
@@ -350,20 +350,20 @@ export default function Product() {
                   type="number"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
-                />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="sheet-demo-username">unit</Label>
-                <Input id="sheet-demo-username" placeholder="unit, kg, eg"
+                  />
+                  </div>
+                  <div className="grid gap-3">
+                  <Label htmlFor="sheet-demo-username">unit</Label>
+                  <Input id="sheet-demo-username" placeholder="unit, kg, eg"
                   name="unit"
                   value={formData.unit}
                   onChange={handleChange}
                   placeholder="Unit (e.g. kg, pcs)"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
-                />
-              </div>
-            </div>
+                  />
+                  </div>
+                  </div>
 
             select catogary in form code start
             <Select>
@@ -371,32 +371,32 @@ export default function Product() {
                 <SelectValue placeholder="Select a catogary" />
               </SelectTrigger>
               <SelectContent>
-                <SelectGroup
-                  name="categoryIndex"
-                  value={formData.categoryIndex}
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  required>
-                  <SelectLabel>Select Catogary</SelectLabel>
-                  <SelectItem value="" disabled>Acceceries</SelectItem>
+              <SelectGroup
+              name="categoryIndex"
+              value={formData.categoryIndex}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required>
+              <SelectLabel>Select Catogary</SelectLabel>
+              <SelectItem value="" disabled>Acceceries</SelectItem>
                   {categories.map((cat, index) => (
                     <SelectItem key={index} value={index}>
-                      {cat}
+                    {cat}
                     </SelectItem>
                   ))}
-
-                </SelectGroup>
-
-              </SelectContent>
-            </Select>
-
-            select catogary in form code start
-
-            <SheetFooter>
+                  
+                  </SelectGroup>
+                  
+                  </SelectContent>
+                  </Select>
+                  
+                  select catogary in form code start
+                  
+                  <SheetFooter>
               <Button type="submit" className="bg-[#155dfc] font-bold !text-white" > {editIndex !== null ? 'Update' : 'Save'}</Button>
               <SheetClose asChild>
-                <Button className="bg-[#155dfc] font-bold !text-white"
-                  type="button"
+              <Button className="bg-[#155dfc] font-bold !text-white"
+              type="button"
                   onClick={() => {
                     setIsOpen(false);
                     setEditIndex(null);
@@ -405,15 +405,15 @@ export default function Product() {
 
                 >Cencel</Button>
               </SheetClose>
-            </SheetFooter>
-          </SheetContent>
+              </SheetFooter>
+              </SheetContent>
            select catogary in form code start 
         </Sheet>
       )}
       add product form code end
  */}
 
-    
+
 
 
 
@@ -422,18 +422,18 @@ export default function Product() {
       {/* {isOpen && (
         <div className="border-black fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 p-4">
           <div className=" border-black bg-white rounded-xl p-8 max-w-lg w-full shadow-2xl">
-            <h2 className="text-2xl font-semibold mb-6">{editIndex !== null ? 'Edit' : 'Add'} Product</h2>
-            <form onSubmit={handleSubmit} className="gap-4 flex flex-col">
+          <h2 className="text-2xl font-semibold mb-6">{editIndex !== null ? 'Edit' : 'Add'} Product</h2>
+          <form onSubmit={handleSubmit} className="gap-4 flex flex-col">
               Inputs
               <input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Product Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Product Name"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
-              />
-              <input
+                />
+                <input
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
@@ -450,8 +450,8 @@ export default function Product() {
                 type="number"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
-              />
-              <input
+                />
+                <input
                 name="stockQuantity"
                 value={formData.stockQuantity}
                 onChange={handleChange}
@@ -459,34 +459,34 @@ export default function Product() {
                 type="number"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
-              />
+                />
               <input
-                name="unit"
+              name="unit"
                 value={formData.unit}
                 onChange={handleChange}
                 placeholder="Unit (e.g. kg, pcs)"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
-
+              
               Category Dropdown
               <select
-                name="categoryIndex"
-                value={formData.categoryIndex}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required
+              name="categoryIndex"
+              value={formData.categoryIndex}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
               >
-                <option value="" disabled>
+              <option value="" disabled>
                   Select Category
-                </option>
-                {categories.map((cat, index) => (
-                  <option key={index} value={index}>
-                    {cat}
                   </option>
-                ))}
+                  {categories.map((cat, index) => (
+                    <option key={index} value={index}>
+                    {cat}
+                    </option>
+                  ))}
               </select>
-
+              
               Buttons
               <div className="flex justify-end gap-4 mt-6">
                 <button
@@ -496,20 +496,21 @@ export default function Product() {
                     setEditIndex(null);
                   }}
                   className="bg-[#155dfc] !text-white font-semibold px-6 py-3 rounded-2xl  transition"
-                >
+                  >
                   Cancel
-                </button>
-                <button
+                  </button>
+                  <button
                   type="submit"
                   className="bg-[#155dfc] !text-white font-semibold px-6 py-3 rounded-2xl  transition"
                 >
                   {editIndex !== null ? 'Update' : 'Save'}
                 </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )} */}
+                </div>
+                </form>
+                </div>
+                </div>
+              )} */}
+
 
       {/* Table */}
       <div className="mt-8 overflow-x-auto border-black">

@@ -15,19 +15,20 @@ import Catogary from '../pages/Catagory';
 import Login from '../components/Login';
 import { useState, useEffect } from 'react';
 import RegisterUserForm from '../components/login_signup';
+
 import Member from '../pages/Member';
 
 function App() {
-  const [isAdminRegistered, setIsAdminRegistered] = useState(true);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
+  const [isAdminRegistered, setIsAdminRegistered] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   return (
-    isAdminRegistered ? 
-      <>
+    // isAdminRegistered ? 
+    <>
         <Router>
           <div className="flex min-h-screen">
             <div className="flex-1 p-4 bg-gray-50 overflow-auto">
-              {isAdminLoggedIn ? 
+              {/* {isAdminLoggedIn ?   */}
                 <>
                   <Sidebar />
                   <Routes>
@@ -39,15 +40,19 @@ function App() {
                     <Route path="/catogary" element={<Catogary />} />
                     <Route path="/member" element={<Member />} />
                   </Routes>
-                </> :
-                <Login />
-              }
+                </> 
+                {/* :
+            
+                 <Login />
+              } */}
             </div>
           </div>
         </Router>
       </>
-    : 
-    <RegisterUserForm />
+    // : 
+    // <RegisterUserForm />
+    // <RegisterUserForm onRegister={() => setIsAdminRegistered(true)} />
+    // <RegisterUserForm setIsAdminRegistered = {true} />
   );
 }
 
