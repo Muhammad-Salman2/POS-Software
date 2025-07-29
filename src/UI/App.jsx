@@ -18,8 +18,8 @@ import RegisterUserForm from '../components/login_signup';
 import Member from '../pages/Member';
 
 function App() {
-  const [isAdminRegistered, setIsAdminRegistered] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminRegistered, setIsAdminRegistered] = useState(true);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
 
   return (
     isAdminRegistered ? 
