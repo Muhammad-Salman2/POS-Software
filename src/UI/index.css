@@ -1,17 +1,35 @@
-
 @import "tailwindcss";
 
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+
+
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
+  font-family: 'Poppins';
+  filter: blur(var(-blur-3xl)); /* 64px */
+background: linear-gradient(to right, #3b82f6, #1e40af);
+  
+}
+
+
+
+
+/* body {
   font-family: "Poppins";
   font-weight: 100;
   font-style: normal;
-}
+} */
 
 
 /* @font-face {
@@ -317,6 +335,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

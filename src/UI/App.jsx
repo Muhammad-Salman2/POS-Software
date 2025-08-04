@@ -8,51 +8,50 @@ import Inventory from '../pages/Inventory';
 import Product from '../pages/Product';
 import Analyst from '../pages/Analyst';
 import Dashboard from '../pages/dashboard';
-import Catogary from '../pages/Catagory';
-// import RegisterUserForm from '../components/login_signup';
+import Catagery from '../pages/Catagery';
 
-// import Signup from '../components/Signup';
+
+
 import Login from '../components/Login';
 import { useState, useEffect } from 'react';
 import RegisterUserForm from '../components/login_signup';
 
 import Member from '../pages/Member';
+import Forgetpassword from '../pages/Forgetpassword';
 
 function App() {
-  const [isAdminRegistered, setIsAdminRegistered] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   return (
-    // isAdminRegistered ? 
     <>
-        <Router>
+      <Router>
+        {isAdminLoggedIn ? (
+
           <div className="flex min-h-screen">
+            <Sidebar />
             <div className="flex-1 p-4 bg-gray-50 overflow-auto">
-              {/* {isAdminLoggedIn ?   */}
-                <>
-                  <Sidebar />
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/invoice" element={<Invoice />} />
-                    <Route path="/inventory" element={<Inventory />} />
-                    <Route path="/product" element={<Product />} />
-                    <Route path="/analyst" element={<Analyst />} />
-                    <Route path="/catogary" element={<Catogary />} />
-                    <Route path="/member" element={<Member />} />
-                  </Routes>
-                </> 
-                {/* :
-            
-                 <Login />
-              } */}
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/invoice" element={<Invoice />} />
+                <Route path="/inventory" element={<Inventory />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/analyst" element={<Analyst />} />
+                <Route path="/catagery" element={<Catagery />} />
+                <Route path="/member" element={<Member />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgetpassword" element={<Forgetpassword />} />
+
+              </Routes>
             </div>
           </div>
-        </Router>
-      </>
-    // : 
-    // <RegisterUserForm />
-    // <RegisterUserForm onRegister={() => setIsAdminRegistered(true)} />
-    // <RegisterUserForm setIsAdminRegistered = {true} />
+        ) : (
+          <Login
+            setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)}
+          />
+        )}
+
+      </Router>
+    </>
   );
 }
 

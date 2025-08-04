@@ -1,56 +1,95 @@
-// import React, { useState } from 'react';
 
-// export default function Login() {
-//   const [formData, setFormData] = useState({ email: '', password: '' });
+
+// import { useState } from "react";
+// import axios from "axios";
+
+// const Login = () => {
+//   const [formData, setFormData] = useState({
+
+//     email: "",
+//     password: "",
+//   });
+
+//   const [message, setMessage] = useState(null);
 
 //   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//     setFormData((prev) => ({
+//       ...prev,
+//       [e.target.name]: e.target.value,
+//     }));
 //   };
 
-//   const handleSubmit = (e) => {
+//   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     console.log('Login data:', formData);
-//     // Yahan API call ya logic add karo
+//     setMessage(null);
+
+//     try {
+//       const response = await axios.post("http://localhost:5000/api/v1/user/login", formData);
+//       setMessage({ type: "success", text: response.data.message });
+//       setFormData({ email: "", password: "" });
+//     } catch (error) {
+//       const errMsg =
+//         error.response?.data?.message || "Something went wrong!";
+//       setMessage({ type: "error", text: errMsg });
+//     }
+//     localStorage.setItem('isAdminLoggedIn', 'true');
+
 //   };
+
 
 //   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-//       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
-//         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-//         <form onSubmit={handleSubmit} className="space-y-4">
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700">Email</label>
-//             <input
-//               type="email"
-//               name="email"
-//               value={formData.email}
-//               onChange={handleChange}
-//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
-//               required
-//             />
-//           </div>
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700">Password</label>
-//             <input
-//               type="password"
-//               name="password"
-//               value={formData.password}
-//               onChange={handleChange}
-//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
-//               required
-//             />
-//           </div>
-//           <button
-//             type="submit"
-//             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md"
-//           >
-//             Login
-//           </button>
-//         </form>
-//       </div>
+//     <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow ">
+//       <h2 className="text-2xl font-bold mb-4">Login</h2>
+//       {message && (
+//         <p
+//           className={`mb-4 ${
+//             message.type === "success" ? "text-green-600" : "text-red-600"
+//           }`}
+//         >
+//           {message.text}
+//         </p>
+//       )}
+
+//       <form onSubmit={handleSubmit} className="space-y-4 ">
+
+
+//         <input
+//           type="email"
+//           name="email"
+//           placeholder="Email"
+//           value={formData.email}
+//           onChange={handleChange}
+//           required
+//           className="w-full px-4 py-2 border rounded !mt-6"
+//         />
+
+//         <input
+//           type="password"
+//           name="password"
+//           placeholder="Password"
+//           value={formData.password}
+//           onChange={handleChange}
+//           required
+//           className="w-full px-4 py-2 border rounded !mt-6"
+//         />
+
+//         <button
+//           type="submit"
+//           className="w-full bg-[#155dfc] text-white py-2 rounded hover:bg-blue-700 !mt-7"
+//         >
+//           Login
+//         </button>
+
+//       </form>
 //     </div>
 //   );
-// }
+// };
+
+// export default Login;
+
+
+
+
 
 
 
@@ -60,10 +99,12 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-   
+
     email: "",
     password: "",
   });
@@ -82,8 +123,16 @@ const Login = () => {
     setMessage(null);
 
     try {
-      const res = await axios.post("http://192.168.3.236:5000/api/v1/user/login", formData);
-      setMessage({ type: "success", text: res.data.message });
+      const response = await axios.post("http://localhost:5000/api/v1/user/login", formData);
+      const res_data = await response.data;
+      console.log("response from server", res_data);
+
+      // localStorage.setItem("token", res_data.data.accessToken);
+      // const token = localStorage.getItem("token");
+      // console.log("Token stored in localStorage:", token);
+
+
+      setMessage({ type: "success", text: response.data.message });
       setFormData({ email: "", password: "" });
     } catch (error) {
       const errMsg =
@@ -91,33 +140,24 @@ const Login = () => {
       setMessage({ type: "error", text: errMsg });
     }
     localStorage.setItem('isAdminLoggedIn', 'true');
-    
+
   };
 
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow ">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <div className="max-w-md mx-auto p-6 border rounded-[10px] shadow-2xs flex flex-col items-center justify-center mt-[150px] bg-white ">
+      <p className="text-[30px] font-bold ">Login</p>
       {message && (
         <p
-          className={`mb-4 ${
-            message.type === "success" ? "text-green-600" : "text-red-600"
-          }`}
+          className={`mb-4 ${message.type === "success" ? "text-green-600" : "text-red-600"
+            }`}
         >
           {message.text}
         </p>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4 ">
-        {/* <input
-          type="text"
-          name="fullname"
-          placeholder="Full Name"
-          value={formData.fullname}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border rounded"
-        /> */}
+
 
         <input
           type="email"
@@ -126,7 +166,7 @@ const Login = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 border rounded !mt-6"
+          className="w-full px-4 py-2 border rounded-[10px] !mt-6"
         />
 
         <input
@@ -136,16 +176,29 @@ const Login = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 border rounded !mt-6"
+          className="w-full px-4 py-2 border rounded-[10px] !mt-6"
         />
+
+        <p className="!mt-4 flex justify-end w-full">
+          <span
+            onClick={() => {
+              navigate("/forgetpassword");
+              
+              console.log("Forget Password Clicked");
+            }}
+            className="text-blue-600 underline cursor-pointer"
+          >
+            Forget Password?
+          </span>
+        </p>
 
         <button
           type="submit"
-          className="w-full bg-[#155dfc] text-white py-2 rounded hover:bg-blue-700 !mt-7"
+          className="w-full bg-[#155dfc] !text-white py-2 rounded-[10px] hover:bg-blue-700 !mt-7 font-bold"
         >
           Login
         </button>
-        
+
       </form>
     </div>
   );
