@@ -131,15 +131,15 @@ const Login = () => {
       // const token = localStorage.getItem("token");
       // console.log("Token stored in localStorage:", token);
 
-
       setMessage({ type: "success", text: response.data.message });
       setFormData({ email: "", password: "" });
+
     } catch (error) {
       const errMsg =
         error.response?.data?.message || "Something went wrong!";
       setMessage({ type: "error", text: errMsg });
     }
-    localStorage.setItem('isAdminLoggedIn', 'true');
+    // localStorage.setItem('isAdminLoggedIn', 'true');
 
   };
 
@@ -179,18 +179,13 @@ const Login = () => {
           className="w-full px-4 py-2 border rounded-[10px] !mt-6"
         />
 
-        <p className="!mt-4 flex justify-end w-full">
-          <span
-            onClick={() => {
-              navigate("/forgetpassword");
-              
-              console.log("Forget Password Clicked");
-            }}
-            className="text-blue-600 underline cursor-pointer"
-          >
-            Forget Password?
-          </span>
-        </p>
+      
+        <span className="text-blue-500 cursor-pointer flex justify-end mt-2" 
+        onClick={() => navigate('/forgetpassword')}>
+          Forget Password?
+        </span>
+
+      
 
         <button
           type="submit"

@@ -17,8 +17,8 @@
 
 body {
   font-family: 'Poppins';
-  filter: blur(var(-blur-3xl)); /* 64px */
-background: linear-gradient(to right, #3b82f6, #1e40af);
+  /* background: linear-gradient(to right, #3b82f6, #1e40af); */
+  filter: blur(var(-blur-3xl)); 
   
 }
 

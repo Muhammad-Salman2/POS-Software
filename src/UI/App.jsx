@@ -1,6 +1,6 @@
 // File: src/App.jsx
 // import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import Sidebar from '../components/Slidebaar';
 
 import Invoice from '../pages/Invoice';
@@ -45,9 +45,16 @@ function App() {
             </div>
           </div>
         ) : (
-          <Login
-            setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)}
-          />
+          // <Login
+          //   setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)}
+          // />
+          <Routes>
+            <Route path="/" element={<Login setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)} />} />
+            <Route path="/forgetpassword" element={<Forgetpassword />} />
+            <Route path="/login" element={<Login setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)} />} />
+            <Route path="*" element={<Login setIsAdminLoggedIn={() => setIsAdminLoggedIn(true)} />} />
+          </Routes>
+
         )}
 
       </Router>
