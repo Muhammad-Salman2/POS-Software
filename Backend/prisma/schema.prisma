@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Store {
+  id        Int       @id @default(autoincrement())
+  name      String    
+  ownerId   Int       
+  owner     User      @relation("StoreOwner", fields: [ownerId], references: [id])
+  members   User[]    @relation("StoreMembers")
+  products  Product[]
+  categories Category[]
+  sales     Sale[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean  @default(false)
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  email            String    @unique
+  password         String
+  fullname         String
+  profileImg       String?
+  refreshToken     String?
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  role             Role      @default(cashier)
+  plan              Plan?
+  ownedStores      Store[]   @relation("StoreOwner")
+  memberOfStores   Store[]   @relation("StoreMembers")
+  Sale             Sale[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now()) @updatedAt
+  isDeleted        Boolean   @default(false)
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    
+  storeId   Int
+  store     Store     @relation(fields: [storeId], references: [id])
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+
+  @@unique([name, storeId])
+}
+
+model Product {
+  id            Int        @id @default(autoincrement())
+  name          String     
+  storeId       Int
+  store         Store      @relation(fields: [storeId], references: [id])
+  price         Float
+  costPrice     Float
+  stockQuantity Int
+  unit          String?
+  categoryId    Int
+  category      Category   @relation(fields: [categoryId], references: [id])
+  SaleItem      SaleItem[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @default(now()) @updatedAt
+  isDeleted     Boolean    @default(false)
+
+  @@unique([name, storeId])
+}
+
+model Sale {
+  id            Int        @id @default(autoincrement())
+  userId        Int
+  user          User       @relation(fields: [userId], references: [id])
+  storeId       Int
+  store         Store      @relation(fields: [storeId], references: [id])
+  totalAmount   Float
+  paymentType   String
+  customerEmail String?
+  customerName  String?
+  customerPhone String?
+  saleItems     SaleItem[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @default(now()) @updatedAt
+  isDeleted     Boolean    @default(false)
+}
+model SaleItem {
+  id          Int      @id @default(autoincrement())
+  saleId      Int
+  productId   Int
+  quantity    Int
+  priceAtSale Float
+  product     Product  @relation(fields: [productId], references: [id])
+  sale        Sale     @relation(fields: [saleId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  isDeleted   Boolean  @default(false)
+}
+
+enum Role {
+  admin
+  cashier
+}
+
+enum Plan {
+  basic
+  standard
+  premium
+}
